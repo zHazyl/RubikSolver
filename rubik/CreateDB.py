@@ -4,7 +4,7 @@ import sqlite3
 from sqlite3 import Error
 
 
-class St:
+class Node:
     cube = None
     cost = 0
 
@@ -22,7 +22,7 @@ def get_corner_string(cube):
 
 db = dict()
 front = list()
-goal = St()
+goal = Node()
 goal.cube = np.array(xInitial)
 front.append(goal)
 db[get_corner_string(goal.cube)] = 0
@@ -32,7 +32,7 @@ while len(front) != 0:
     if curr.cost <= 6:
         child_cost = curr.cost + 1
         for i in range(12):
-            new = St()
+            new = Node()
             new.cube = np.array(curr.cube)
             new.cost = child_cost
             make_move(new.cube, i + 1, 0)
